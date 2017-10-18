@@ -17,19 +17,43 @@ class Blog(db.Model):
         self.title = title
         self.body = body
 
+#route to handle displaying main page
+@app.route('/blog', methods=['POST', 'GET'])
+def blog():
+    if request.method == 'POST':
+        blog_header = request.form['blog.title']
+        blog_post = request.form['blog.body']
+    blogs = Blog.query.all()
+    return render_template('blog_listings_form.html', blogs=blogs)
+
+
+
+
 
 #handler for adding new blog entry
 @app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
-
+    title_error = ""
+    blog_error = ""
     if request.method == 'POST':
         blog_header = request.form['blog.title']
         blog_post = request.form['blog.body']
+        if blog_header =="" and blog_post !="":
+            title_error = "Please type a title."
+            return render_template('blog_entry_form.html', title_error=title_error, b_body=blog_post)
+        elif blog_post =="" and blog_header !="":
+            blog_error = "Enter text please."
+            return render_template('blog_entry_form.html', blog_error=blog_error,b_title=blog_header)
+        elif blog_header =="" and blog_post =="":
+            title_error = "Please type a title."
+            blog_error = "Enter text please."
+            return render_template('blog_entry_form.html',title_error=title_error,blog_error=blog_error)
         new_post = Blog(blog_header, blog_post)
         db.session.add(new_post)
         db.session.commit()
     blogs = Blog.query.all()
     return render_template('blog_entry_form.html', blogs=blogs)
+
 
 
 if __name__ == '__main__':

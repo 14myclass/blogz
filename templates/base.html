@@ -3,18 +3,23 @@
     <head>
         <style>
             h1 { text-align: center; }
+            ul { list-style-type: none;}
+            .error { 
+                color:red;}
+        
         </style>
         <title>{{title}}</title>
     </head>
 <body>
 
+    <nav>       
+        <a href="/blog">Main Blog Page   </a>|
+        <a href="/newpost">Add A Blog Entry</a>
+        
+    </nav>    
+
+    
     {% block content %}
-
-    <nav>
-        <a href='/blog'>Main Blog Page</a>
-        <a href='/newpost'> Main Blog Page Add A Blog Entry</a>
-
-    </nav>
     {% endblock %}
 
 </body>

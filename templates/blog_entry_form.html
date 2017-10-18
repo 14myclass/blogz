@@ -5,35 +5,22 @@
         <form method='post'>
             <label>
                 Title for new blog:
-                <p><input type="text" name='blog.title' /></p>
+                <p><input type="text" name='blog.title' value='{{b_title}}' /></p>
+                    <p class="error">{{title_error}}</p>
             </label>
 
             <label>
                 Enter new blog:
-                <textarea type="text" name='blog.body'></textarea>
+                <p><textarea type="text" name='blog.body'>{{b_body}}</textarea></p>
+                <p class="error">{{blog_error}}</p>
             </label>
             <input type="submit" value='Add Entry' />
         </form>
+          
 
-        <hr />
+        
 
-    <h1> Build A Blog</h1>
-    {% if blogs|length == 0 %}
-        <p>Please type a blog entry.</p>
-    {% else %}
-
-        <ul>
-            {% for blog in blogs %}
-                <li>
-                    <h2>{{blog.title}}</h2>
-                    <h3> {{blog.body}}</h3> 
-                </li>
-            {% endfor %}
-        </ul>
-
-
-    {% endif %}
-
+    
     
 
 
