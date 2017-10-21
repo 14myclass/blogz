@@ -69,6 +69,9 @@ def newpost():
         new_post = Blog(blog_header, blog_post)
         db.session.add(new_post)
         db.session.commit()
+        
+           
+        return redirect('/blog?id='+str(new_post.id))
     blogs = Blog.query.all()
     return render_template('blog_entry_form.html', blogs=blogs)
 
