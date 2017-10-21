@@ -20,11 +20,29 @@ class Blog(db.Model):
 #route to handle displaying main page
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
-    if request.method == 'POST':
-        blog_header = request.form['blog.title']
-        blog_post = request.form['blog.body']
+    #if request.method == 'POST':
+       # blog_header = request.form['blog.title']
+        #blog_post = request.form['blog.body']
+    #else:
+        #blog_number = request.args.get('id')
+        #blogs = Blog.query.filter_by(id=blog_number).all()
+        #return render_template('single_blog_form.html', blog=blogs)
+        
     blogs = Blog.query.all()
+    
+    if request.args:
+        blog_number = request.args.get('id')
+        #blogs = Blog.query.get(id='blog_number')
+        single_blog = Blog.query.filter_by(id=blog_number).first()
+        return render_template('single_blog_form.html', blog=single_blog)
+    
     return render_template('blog_listings_form.html', blogs=blogs)
+#displays single entry when blog title selected
+#@app.route('/blog?id=', methods=['GET'])
+#def single_blog():
+    #blog_number = int(request.args.get('id'))
+    #blogs = Blog.query.filter_by(id=blog_number).all()
+    #return render_template('single_blog_form.html', blog=blogs.id)
 
 
 
