@@ -6,7 +6,7 @@
     
     <h2>{{blog.title}}</h2>
     <h3> {{blog.body}}</h3>
-    
+    <a href='/blog?user={{blog.owner.id}}'>{{blog.owner.username}}</a>
 
         
 {% endblock %}
