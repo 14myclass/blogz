@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1> SINGLE AUTHOR POSTS</h1>
+
+    {% for entry in entries %}
+
+        <a href='/blog?user={{entry.owner.id}}'>{{entry.owner.username}}</a>
+        <h2>{{entry.title}}</h2>
+        <h3> {{entry.body}}</h3>
+
+    {% endfor %}
+    
+
+        
+{% endblock %}
+                
